@@ -1,19 +1,22 @@
-create table public.blood_requests (
+create table public.donors (
   id uuid not null default gen_random_uuid (),
-  name text not null,
-  contact_number text not null,
+  full_name text not null,
+  age integer not null,
+  gender text not null,
   blood_type text not null,
-  quantity integer not null,
-  hospital_name text not null,
-  patient_name text not null,
-  urgency text not null,
-  patient_condition text null,
-  request_date timestamp with time zone null default now(),
+  contact_number text not null,
+  email text not null,
+  address text not null,
+  medical_history text null,
+  donation_date timestamp with time zone null default now(),
   created_at timestamp with time zone null default now(),
-  constraint blood_requests_pkey primary key (id),
-  constraint blood_requests_quantity_check check ((quantity > 0))
+  constraint donors_pkey primary key (id),
+  constraint donors_age_check check (
+    (
+      (age >= 18)
+      and (age <= 65)
+    )
+  )
 ) TABLESPACE pg_default;
 
-create index IF not exists idx_blood_requests_blood_type on public.blood_requests using btree (blood_type) TABLESPACE pg_default;
-
-create index IF not exists idx_blood_requests_urgency on public.blood_requests using btree (urgency) TABLESPACE pg_default;
+create index IF not exists idx_donors_blood_type on public.donors using btree (blood_type) TABLESPACE pg_default;
