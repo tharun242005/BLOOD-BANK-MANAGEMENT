@@ -40,7 +40,7 @@ export function Footer() {
               <p className="flex items-center gap-1">
                 <Github size={16} />
                 <a 
-                  href="https://github.com/tharun242005/blood-bank-management" 
+                  href="https://github.com/tharun242005/BLOOD-BANK-MANAGEMENT" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-bloodRed-500 hover:underline"
